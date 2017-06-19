@@ -24,22 +24,25 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-		
+
 		// Picture Upload from user 
 		$photo = imagecreatefromjpeg('D:\work\replaceimg\uploads\\'.basename( $_FILES["fileToUpload"]["name"]));
 
-		// source frame fronts 
+		// source frame fonts and list width height frame
 		$src = imagecreatefrompng('D:\work\replaceimg\sign.png');
 
-
+        // list($width, $height) = getimagesize($src);
+        // define new Widht & Height 
 		$w = imagesx($src);
 		$h = imagesy($src);
+
+        $newwidth = imagesx($photo);
+        $newheight = imagesy($photo);
+
 		imagealphablending($photo,true);
 
-		// $src = imagecreatefrompng("images/girls-dresses/1.png");
-		imagecopy($photo,$src,0,0,0,0,$w,$h);
 
+        imagecopyresized($photo, $src, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		imagepng($photo,"output.png",9);
 		echo '<img src="output.png" />';
 
