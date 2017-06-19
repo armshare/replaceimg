@@ -44,7 +44,8 @@ if ($uploadOk == 0) {
 
         imagecopyresized($photo, $src, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		imagepng($photo,"output.png",9);
-		echo '<img src="output.png" />';
+		echo '<img src="output.png" id="downloadbtn" />';
+        imagedestroy($photo);
 
     } else {
         echo "Sorry, there was an error uploading your file.";
