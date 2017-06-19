@@ -44,13 +44,13 @@ if ($uploadOk == 0) {
 
         imagecopyresized($photo, $src, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		imagepng($photo,"output.png",9);
-		echo '<img src="output.png" id="downloadbtn" />';
+		echo '<img src="output.png" id="downloadbtn"  />';
+        echo '<a href="output.png" download >Download</a>';
         imagedestroy($photo);
 
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
-    // dfdfd
 }
 
 
